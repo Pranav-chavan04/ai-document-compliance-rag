@@ -1,22 +1,28 @@
-
+# Node
 node_modules/
 dist/
 build/
 
+# Python
 .venv/
 __pycache__/
 *.pyc
 
+# Environment variables
 .env
 .env.*
 
+# RAG / Vector DB
 chroma_db/
 
+# Uploaded files
 data/uploads/
 p2/data/uploads/
 
+# IDE
 .vscode/
 .idea/
 
+# OS
 .DS_Store
 Thumbs.db
