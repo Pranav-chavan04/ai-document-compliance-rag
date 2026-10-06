@@ -1,8 +1,6 @@
 import { useState } from "react";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000";
-
-function PdfUpload({ onUploaded }) {
+function PdfUpload() {
   const [file, setFile] = useState(null);
   const [uploading, setUploading] = useState(false);
   const [message, setMessage] = useState("");
@@ -21,7 +19,7 @@ function PdfUpload({ onUploaded }) {
 
   try {
     const response = await fetch(
-      `${API_URL}/upload`,
+      "http://localhost:8000/upload",
       {
         method: "POST",
         body: formData,
@@ -31,14 +29,12 @@ function PdfUpload({ onUploaded }) {
     const data = await response.json();
 
     if (!response.ok) {
-      throw new Error(data.detail || data.message || "Upload failed");
+      throw new Error(data.message || "Upload failed");
     }
 
     setMessage(
       `✓ ${data.filename} processed successfully · ${data.chunks} chunks`
     );
-
-    if (onUploaded) onUploaded(data.filename);
 
   } catch (error) {
     console.error(error);
